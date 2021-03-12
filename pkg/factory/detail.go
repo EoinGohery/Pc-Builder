@@ -1,32 +1,32 @@
 package factory
 
-import "fmt"
-
 //PrintDetails esport to display system info
 func PrintDetails() {
+
+	tower := &tower{}
+
 	asusFactory, _ := getPartsFactory("asus")
-	amdFactory, _ := getPartsFactory("nike")
+	amdFactory, _ := getPartsFactory("amd")
+	seagateFactory, _ := getPartsFactory("seagate")
+	nvidiaFactory, _ := getPartsFactory("nvidia")
 
-	amdMOBO := asusFactory.makeMOBO()
+	mobo := asusFactory.makeMOBO()
 
-	amdCPU := amdFactory.makeCPU()
+	cpu := amdFactory.makeCPU()
+	ram := asusFactory.makeRAM()
+	tower.add(cpu)
+	tower.add(ram)
+	tower.add(mobo)
 
-	printCPUDetails(amdCPU)
+	drive := seagateFactory.makeDRIVE()
+	tower.add(drive)
 
-	printMOBODetails(amdMOBO)
-}
+	gpu := nvidiaFactory.makeGPU()
+	tower.add(gpu)
 
-func printCPUDetails(g iCPU) {
-	fmt.Printf("Logo: %s", g.getName())
-	fmt.Println()
-	fmt.Printf("Size: %s", g.getName())
-	fmt.Println()
-}
+	psu := asusFactory.makePSU()
+	tower.add(psu)
 
-func printMOBODetails(m iMOBO) {
-	fmt.Printf("Size: %s", m.getName())
-	fmt.Println()
-	fmt.Printf("Size: %s", m.getName())
-	fmt.Println()
+	tower.toString()
 
 }

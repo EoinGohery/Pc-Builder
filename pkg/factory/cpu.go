@@ -1,8 +1,11 @@
 package factory
 
+import "fmt"
+
 type iCPU interface {
 	setName(name string)
 	getName() string
+	toString()
 }
 
 type cpu struct {
@@ -15,4 +18,8 @@ func (c *cpu) setName(name string) {
 
 func (c *cpu) getName() string {
 	return c.name
+}
+
+func (c *cpu) toString() {
+	fmt.Printf(c.name)
 }

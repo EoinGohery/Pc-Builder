@@ -1,8 +1,11 @@
 package factory
 
+import "fmt"
+
 type iGPU interface {
 	setName(name string)
 	getName() string
+	toString()
 }
 
 type gpu struct {
@@ -15,4 +18,8 @@ func (g *gpu) setName(name string) {
 
 func (g *gpu) getName() string {
 	return g.name
+}
+
+func (g *gpu) toString() {
+	fmt.Printf(g.name)
 }

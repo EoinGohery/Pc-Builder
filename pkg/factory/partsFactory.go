@@ -2,7 +2,7 @@ package factory
 
 import "fmt"
 
-type factory interface {
+type partsFactory interface {
 	makeCPU() iCPU
 	makeGPU() iGPU
 	makeMOBO() iMOBO
@@ -11,7 +11,8 @@ type factory interface {
 	makePSU() iPSU
 }
 
-func getPartsFactory(brand string) (factory, error) {
+//GetPartsFactory used to iniitalise parts
+func getPartsFactory(brand string) (partsFactory, error) {
 	if brand == "amd" {
 		return &amd{}, nil
 	} else if brand == "intel" {

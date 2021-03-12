@@ -1,8 +1,11 @@
 package factory
 
+import "fmt"
+
 type iRAM interface {
 	setName(name string)
 	getName() string
+	toString()
 }
 
 type ram struct {
@@ -15,4 +18,8 @@ func (r *ram) setName(name string) {
 
 func (r *ram) getName() string {
 	return r.name
+}
+
+func (r *ram) toString() {
+	fmt.Printf(r.name)
 }
