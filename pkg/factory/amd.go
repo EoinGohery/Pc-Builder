@@ -19,7 +19,7 @@ func (a *amd) makeGPU() iGPU {
 	}
 }
 
-func (a *amd) makeMobo() iMOBO {
+func (a *amd) makeMOBO() iMOBO {
 	return &amdMOBO{
 		mobo: mobo{
 			name: "Ryzen",
@@ -27,16 +27,16 @@ func (a *amd) makeMobo() iMOBO {
 	}
 }
 
-func (a *amd) makeRam() iRam {
-	return &amdRam{
+func (a *amd) makeRAM() iRAM {
+	return &amdRAM{
 		ram: ram{
 			name: "Ryzen",
 		},
 	}
 }
 
-func (a *amd) makeHardDrive() iDrive {
-	return &amdDrive{
+func (a *amd) makeDRIVE() iDRIVE {
+	return &amdDRIVE{
 		drive: drive{
 			name: "Ryzen",
 		},
