@@ -6,7 +6,7 @@ type intel struct {
 func (i *intel) makeCPU() iCPU {
 	return &intelCPU{
 		cpu: cpu{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }
@@ -14,7 +14,7 @@ func (i *intel) makeCPU() iCPU {
 func (i *intel) makeGPU() iGPU {
 	return &intelGPU{
 		gpu: gpu{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }
@@ -22,7 +22,7 @@ func (i *intel) makeGPU() iGPU {
 func (i *intel) makeMOBO() iMOBO {
 	return &intelMOBO{
 		mobo: mobo{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }
@@ -30,7 +30,7 @@ func (i *intel) makeMOBO() iMOBO {
 func (i *intel) makeRAM() iRAM {
 	return &intelRAM{
 		ram: ram{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }
@@ -38,7 +38,7 @@ func (i *intel) makeRAM() iRAM {
 func (i *intel) makeDRIVE() iDRIVE {
 	return &intelDRIVE{
 		drive: drive{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }
@@ -46,7 +46,7 @@ func (i *intel) makeDRIVE() iDRIVE {
 func (i *intel) makePSU() iPSU {
 	return &intelPSU{
 		psu: psu{
-			name: "Ryzen",
+			manufacturer: "Intel",
 		},
 	}
 }

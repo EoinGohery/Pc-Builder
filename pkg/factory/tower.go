@@ -10,9 +10,9 @@ func (t *tower) add(c component) {
 	t.components = append(t.components, c)
 }
 
-func (t *tower) toString() {
-	fmt.Printf("Printing parts list for selected build")
+func (t *tower) Print() {
+	fmt.Printf("\nPrinting parts list for selected build:")
 	for _, composite := range t.components {
-		composite.toString()
+		composite.print()
 	}
 }

@@ -11,12 +11,14 @@ func PrintDetails() {
 	nvidiaFactory, _ := getPartsFactory("nvidia")
 
 	mobo := asusFactory.makeMOBO()
+	//mobo.setData()
+	tower.add(mobo)
 
 	cpu := amdFactory.makeCPU()
-	ram := asusFactory.makeRAM()
 	tower.add(cpu)
+
+	ram := asusFactory.makeRAM()
 	tower.add(ram)
-	tower.add(mobo)
 
 	drive := seagateFactory.makeDRIVE()
 	tower.add(drive)
@@ -27,6 +29,6 @@ func PrintDetails() {
 	psu := asusFactory.makePSU()
 	tower.add(psu)
 
-	tower.toString()
+	tower.Print()
 
 }

@@ -6,7 +6,7 @@ type amd struct {
 func (a *amd) makeCPU() iCPU {
 	return &amdCPU{
 		cpu: cpu{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
@@ -14,7 +14,7 @@ func (a *amd) makeCPU() iCPU {
 func (a *amd) makeGPU() iGPU {
 	return &amdGPU{
 		gpu: gpu{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
@@ -22,7 +22,7 @@ func (a *amd) makeGPU() iGPU {
 func (a *amd) makeMOBO() iMOBO {
 	return &amdMOBO{
 		mobo: mobo{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
@@ -30,7 +30,7 @@ func (a *amd) makeMOBO() iMOBO {
 func (a *amd) makeRAM() iRAM {
 	return &amdRAM{
 		ram: ram{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
@@ -38,7 +38,7 @@ func (a *amd) makeRAM() iRAM {
 func (a *amd) makeDRIVE() iDRIVE {
 	return &amdDRIVE{
 		drive: drive{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
@@ -46,7 +46,7 @@ func (a *amd) makeDRIVE() iDRIVE {
 func (a *amd) makePSU() iPSU {
 	return &amdPSU{
 		psu: psu{
-			name: "Ryzen",
+			manufacturer: "Amd",
 		},
 	}
 }
