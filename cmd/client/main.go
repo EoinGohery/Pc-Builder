@@ -1,7 +1,6 @@
 package client
 
 import (
-	"CS4227/pkg/factory"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,8 +9,8 @@ import (
 
 //Run client
 func Run() {
-	fmt.Println("Let's Go Boys!: Frontend")
-	factory.PrintDetails()
+
+	//factory.PrintDetails()
 
 	fmt.Println("\nEnter number (1) Cpus (2) Gpus (3) Drivers (4) Motherboards (5) PSU (6) Ram: ")
 	var input int
