@@ -3,6 +3,8 @@ package com.example.BriarfieldPC.demo.service;
 import com.example.BriarfieldPC.demo.entity.*;
 import com.example.BriarfieldPC.demo.repository.*;
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,12 +12,18 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PcService {
-    private final CpuRepositroy cpuRepository;
-    private final GpuRepository gpuRepository;
-    private final DriveRepository driveRepository;
-    private final MotherboardRepository motherboardRepository;
-    private final PsuRepository psuRepository;
-    private final RamRepository ramRepository;
+    @Autowired
+    private CpuRepositroy cpuRepository;
+    @Autowired
+    private GpuRepository gpuRepository;
+    @Autowired
+    private DriveRepository driveRepository;
+    @Autowired
+    private MotherboardRepository motherboardRepository;
+    @Autowired
+    private PsuRepository psuRepository;
+    @Autowired
+    private RamRepository ramRepository;
 
     public List<Cpu> getAllCpu(){
         return cpuRepository.findAll();
