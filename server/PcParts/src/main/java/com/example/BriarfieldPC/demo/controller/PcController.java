@@ -3,6 +3,8 @@ package com.example.BriarfieldPC.demo.controller;
 import com.example.BriarfieldPC.demo.entity.*;
 import com.example.BriarfieldPC.demo.service.PcService;
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +15,8 @@ import java.util.List;
 @RequestMapping("/api/parts")
 @AllArgsConstructor
 public class PcController {
-    private final PcService pcService;
+    @Autowired
+    private PcService pcService;
 
     @GetMapping("/getGPUs")
     public List<Gpu> getAllGpus(){

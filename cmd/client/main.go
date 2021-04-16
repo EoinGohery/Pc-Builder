@@ -8,8 +8,8 @@ import (
 
 //Run client
 func Run() {
-	fmt.Println("Let's Go Boys!: Frontend")
-	factory.PrintDetails()
+
+	//factory.PrintDetails()
 
 	fmt.Println("\nEnter one of the following (1) cpu (2) gpu (3) driver (4) mbd (5) ps (6) ram: ")
 	var input string
