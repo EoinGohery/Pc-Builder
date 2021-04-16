@@ -15,6 +15,6 @@ func (d *director) setBuilder(b iBuilder) {
 }
 
 func (d *director) BuildRequest() request {
-	d.builder.sendRequest()
+	d.builder.sendRequest(&send{})
 	return d.builder.getRequest()
 }

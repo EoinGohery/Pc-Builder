@@ -1,7 +1,7 @@
 package builder
 
 type iBuilder interface {
-	sendRequest()
+	sendRequest(v visitor)
 	getRequest() request
 }
 
@@ -15,7 +15,7 @@ func GetBuilder(builderType string) iBuilder {
 	}
 
 	if builderType == "driver" {
-		return &driverBuilder{}
+		return &driveBuilder{}
 	}
 
 	if builderType == "mbd" {
@@ -23,7 +23,7 @@ func GetBuilder(builderType string) iBuilder {
 	}
 
 	if builderType == "ps" {
-		return &psBuilder{}
+		return &psuBuilder{}
 	}
 
 	if builderType == "ram" {
