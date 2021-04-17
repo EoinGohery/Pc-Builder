@@ -14,7 +14,6 @@ func (b *ramBuilder) sendRequest(v visitor) {
 
 func (b *ramBuilder) getRequest() request {
 	return request{
-		// extension: b.extension,
 		url: b.url,
 	}
 }

@@ -1,6 +1,7 @@
 package client
 
 import (
+	"CS4227/pkg/factory"
 	"CS4227/pkg/interceptor"
 	"fmt"
 )
@@ -26,4 +27,8 @@ func Run() {
 	for i := range all {
 		fmt.Print(all[i].ToString())
 	}
+
+	tower := &factory.Tower{}
+	tower.Add(all[0])
+	tower.Print()
 }

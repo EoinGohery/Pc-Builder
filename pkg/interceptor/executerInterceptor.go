@@ -4,9 +4,9 @@ import (
 	"CS4227/pkg/filter"
 )
 
-type Interceptor struct {
+type ExecuteInterceptor struct {
 }
 
-func (i Interceptor) execute(request string) string {
+func (i ExecuteInterceptor) execute(request string) string {
 	return filter.SendRequest(request)
 }
