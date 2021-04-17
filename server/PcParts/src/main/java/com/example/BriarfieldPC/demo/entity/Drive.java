@@ -21,8 +21,8 @@ public class Drive {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private String name;
     private String Manufacturer;
+    private String name;
     private Integer size;
     private Integer TDP;
     private Integer price;

@@ -32,3 +32,7 @@ func PrintDetails() {
 	tower.Print()
 
 }
+
+// func PrintDetails(tower) {
+// 	tower.Print()
+// }

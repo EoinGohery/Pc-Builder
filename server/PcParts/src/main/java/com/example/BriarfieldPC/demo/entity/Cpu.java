@@ -21,6 +21,7 @@ public class Cpu {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
+    private String Manufacturer;
     private String name;
     private Integer cores;
     private String clock;

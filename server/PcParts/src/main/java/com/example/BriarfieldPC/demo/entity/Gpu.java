@@ -20,9 +20,9 @@ public class Gpu {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
+    private String Manufacturer;
     @NotBlank(message = "Name cannot be empty or Null")
     private String gpuName;
-    private String Manufacturer;
     private String Memory;
     private String clock;
     private Integer TDP;

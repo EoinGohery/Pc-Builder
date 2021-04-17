@@ -20,6 +20,7 @@ public class Ram {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
+    private String Manufacturer;
     private Integer memory;
     private String clock;
     private Integer TDP;

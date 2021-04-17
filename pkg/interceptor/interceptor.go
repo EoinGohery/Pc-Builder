@@ -1,10 +1,12 @@
 package interceptor
 
-import "fmt"
+import (
+	"CS4227/pkg/filter"
+)
 
 type Interceptor struct {
 }
 
-func (i Interceptor) execute(request string) {
-	fmt.Sprintf("in Interceptor: %s", request)
+func (i Interceptor) execute(request string) string {
+	return filter.SendRequest(request)
 }

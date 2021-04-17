@@ -21,9 +21,9 @@ public class PSU {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
+    private String Manufacturer;
     private String name;
     private Integer price;
-    private String Manufacturer;
     private Integer capacity;
     private Integer rating;
     private Integer TDP;
