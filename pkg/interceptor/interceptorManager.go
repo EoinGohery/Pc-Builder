@@ -14,7 +14,7 @@ func (i InterceptorManager) setLogging(loggingInterceptor LoggingInterceptor) {
 	i.loggingInterceptor = loggingInterceptor
 }
 
-func (i InterceptorManager) execute(request string, filter map[string]string) [][]string {
+func (i InterceptorManager) execute(request string, filter map[string]interface{}) map[string]interface{} {
 	i.loggingInterceptor.execute(request)
 	returned := i.command.execute(request)
 	result := i.filterInterceptor.execute(returned, filter)

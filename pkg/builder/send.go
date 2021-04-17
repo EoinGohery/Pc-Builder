@@ -4,12 +4,19 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 type send struct {
 }
 
 func (s *send) visitForCPU(b *cpuBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getCPUs")
 	if err != nil {
 		log.Fatalln(err)
@@ -27,6 +34,12 @@ func (s *send) visitForCPU(b *cpuBuilder) {
 }
 
 func (s *send) visitForDrive(b *driveBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getDrivers")
 	if err != nil {
 		log.Fatalln(err)
@@ -44,6 +57,12 @@ func (s *send) visitForDrive(b *driveBuilder) {
 }
 
 func (s *send) visitForGPU(b *gpuBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getGPUs")
 	if err != nil {
 		log.Fatalln(err)
@@ -61,6 +80,12 @@ func (s *send) visitForGPU(b *gpuBuilder) {
 }
 
 func (s *send) visitForPSU(b *psuBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getPS")
 	if err != nil {
 		log.Fatalln(err)
@@ -78,6 +103,12 @@ func (s *send) visitForPSU(b *psuBuilder) {
 }
 
 func (s *send) visitForMB(b *mbdBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getMBDs")
 	if err != nil {
 		log.Fatalln(err)
@@ -95,6 +126,12 @@ func (s *send) visitForMB(b *mbdBuilder) {
 }
 
 func (s *send) visitForRam(b *ramBuilder) {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+
 	resp, err := http.Get("http://localhost:8080/api/parts/getRam")
 	if err != nil {
 		log.Fatalln(err)
