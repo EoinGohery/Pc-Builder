@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,11 +19,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class PSU {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
-    private String Manufacturer;
-    private String name;
-    private Integer price;
-    private Integer capacity;
-    private Integer rating;
-    private Integer TDP;
+    public long Id;
+    public String Manufacturer;
+    public String Name;
+    public Integer Price;
+    public Integer Capacity;
+    public Integer Rating;
+    public Integer Tdp;
 }

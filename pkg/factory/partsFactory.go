@@ -3,16 +3,16 @@ package factory
 import "fmt"
 
 type partsFactory interface {
-	makeCPU() iCPU
-	makeGPU() iGPU
-	makeMOBO() iMOBO
-	makeRAM() iRAM
-	makeDRIVE() iDRIVE
-	makePSU() iPSU
+	MakeCPU() iCPU
+	MakeGPU() iGPU
+	MakeMOBO() iMOBO
+	MakeRAM() iRAM
+	MakeDRIVE() iDRIVE
+	MakePSU() iPSU
 }
 
 //GetPartsFactory used to iniitalise parts
-func getPartsFactory(brand string) (partsFactory, error) {
+func GetPartsFactory(brand string) (partsFactory, error) {
 	if brand == "amd" {
 		return &amd{}, nil
 	} else if brand == "intel" {
@@ -25,5 +25,5 @@ func getPartsFactory(brand string) (partsFactory, error) {
 		return &seagate{}, nil
 	}
 
-	return nil, fmt.Errorf("Wrong Manufacturer passed")
+	return nil, fmt.Errorf("wrong manufacturer passed")
 }

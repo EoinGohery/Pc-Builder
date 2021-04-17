@@ -3,22 +3,30 @@ package factory
 import "fmt"
 
 type iDRIVE interface {
-	GetPrice() float32
+	GetID() int
+	GetPrice() int
 	GetManufacturer() string
 	GetName() string
 	GetSize() int
-	setData(name string, price float32, tpd int, size int, technology string)
-	toString() string
-	print()
+	SetData(id int, name string, price int, tpd int, size int, technology string)
+	ToString() string
+	Print()
+	GetFilter() string
 }
 
 type drive struct {
+	id           int
 	name         string
 	manufacturer string
-	price        float32
+	price        int
 	size         int
 	tpd          int
 	technology   string
+}
+
+// GetID returns the string id
+func (d drive) GetID() int {
+	return d.id
 }
 
 // GetTpd returns the int tpd
@@ -37,7 +45,7 @@ func (d drive) GetManufacturer() string {
 }
 
 // GetPrice returns the float32 price
-func (d drive) GetPrice() float32 {
+func (d drive) GetPrice() int {
 	return d.price
 }
 
@@ -51,7 +59,13 @@ func (d drive) GetTechnology() string {
 	return d.technology
 }
 
-func (d *drive) setData(name string, price float32, tpd int, size int, technology string) {
+// GetFilter returns the filterable value if any
+func (d drive) GetFilter() string {
+	return ""
+}
+
+func (d *drive) SetData(id int, name string, price int, tpd int, size int, technology string) {
+	d.id = id
 	d.name = name
 	d.price = price
 	d.tpd = tpd
@@ -59,10 +73,10 @@ func (d *drive) setData(name string, price float32, tpd int, size int, technolog
 	d.technology = technology
 }
 
-func (d *drive) print() {
-	fmt.Printf(d.toString())
+func (d *drive) Print() {
+	fmt.Print(d.ToString())
 }
 
-func (d *drive) toString() string {
-	return fmt.Sprintf("\nDrive: %s %s %s Size: %d TPD: %d Price: %f", d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
+func (d *drive) ToString() string {
+	return fmt.Sprintf("\nDrive: %s %s %s Size: %d TPD: %d Price: %d", d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
 }

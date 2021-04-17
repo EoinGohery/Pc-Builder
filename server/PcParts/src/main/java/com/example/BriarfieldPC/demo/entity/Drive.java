@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,10 +19,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Drive {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
-    private String Manufacturer;
-    private String name;
-    private Integer size;
-    private Integer TDP;
-    private Integer price;
+    public long Id;
+    public String Manufacturer;
+    public String Name;
+    public Integer Size;
+    public Integer Tdp;
+    public Integer Price;
 }

@@ -14,7 +14,7 @@ func GetBuilder(builderType string) iBuilder {
 		return &gpuBuilder{}
 	}
 
-	if builderType == "driver" {
+	if builderType == "drive" {
 		return &driveBuilder{}
 	}
 
@@ -22,7 +22,7 @@ func GetBuilder(builderType string) iBuilder {
 		return &mbdBuilder{}
 	}
 
-	if builderType == "ps" {
+	if builderType == "psu" {
 		return &psuBuilder{}
 	}
 

@@ -3,22 +3,30 @@ package factory
 import "fmt"
 
 type iRAM interface {
-	GetPrice() float32
+	GetID() int
+	GetPrice() int
 	GetManufacturer() string
 	GetName() string
 	GetClock() string
 	GetMemory() int
-	setData(name string, price float32, memory int, clock string)
-	toString() string
-	print()
+	SetData(id int, name string, price int, memory int, clock string)
+	ToString() string
+	Print()
+	GetFilter() string
 }
 
 type ram struct {
+	id           int
 	name         string
 	manufacturer string
-	price        float32
+	price        int
 	clock        string
 	memory       int
+}
+
+// GetID returns the string id
+func (r ram) GetID() int {
+	return r.id
 }
 
 // GetName returns the string name
@@ -32,7 +40,7 @@ func (r ram) GetManufacturer() string {
 }
 
 // GetPrice returns the float32 price
-func (r ram) GetPrice() float32 {
+func (r ram) GetPrice() int {
 	return r.price
 }
 
@@ -46,17 +54,23 @@ func (r ram) GetMemory() int {
 	return r.memory
 }
 
-func (r *ram) setData(name string, price float32, memory int, clock string) {
+// GetFilter returns the filterable value if any
+func (r ram) GetFilter() string {
+	return ""
+}
+
+func (r *ram) SetData(id int, name string, price int, memory int, clock string) {
+	r.id = id
 	r.name = name
 	r.price = price
 	r.memory = memory
 	r.clock = clock
 }
 
-func (r *ram) print() {
-	fmt.Printf(r.toString())
+func (r *ram) Print() {
+	fmt.Print(r.ToString())
 }
 
-func (r *ram) toString() string {
-	return fmt.Sprintf("\nRam: %s %s Memory: %d Clock Speed: %s Price: %f", r.manufacturer, r.name, r.memory, r.clock, r.price)
+func (r *ram) ToString() string {
+	return fmt.Sprintf("\nRam: %s %s Memory: %d Clock Speed: %s Price: %d", r.manufacturer, r.name, r.memory, r.clock, r.price)
 }

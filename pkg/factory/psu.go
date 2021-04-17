@@ -3,22 +3,30 @@ package factory
 import "fmt"
 
 type iPSU interface {
-	GetPrice() float32
+	GetID() int
+	GetPrice() int
 	GetManufacturer() string
 	GetName() string
 	GetRating() string
 	GetCapacity() int
-	setData(name string, price float32, capacity int, rating string)
-	toString() string
-	print()
+	SetData(id int, name string, price int, capacity int, rating string)
+	ToString() string
+	Print()
+	GetFilter() string
 }
 
 type psu struct {
+	id           int
 	name         string
 	manufacturer string
-	price        float32
+	price        int
 	rating       string
 	capacity     int
+}
+
+// GetID returns the string id
+func (p psu) GetID() int {
+	return p.id
 }
 
 // GetName returns the string name
@@ -32,7 +40,7 @@ func (p psu) GetManufacturer() string {
 }
 
 // GetPrice returns the float32 price
-func (p psu) GetPrice() float32 {
+func (p psu) GetPrice() int {
 	return p.price
 }
 
@@ -46,17 +54,23 @@ func (p psu) GetCapacity() int {
 	return p.capacity
 }
 
-func (p *psu) setData(name string, price float32, capacity int, rating string) {
+// GetFilter returns the filterable value if any
+func (p psu) GetFilter() string {
+	return ""
+}
+
+func (p *psu) SetData(id int, name string, price int, capacity int, rating string) {
+	p.id = id
 	p.name = name
 	p.price = price
 	p.capacity = capacity
 	p.rating = rating
 }
 
-func (p *psu) print() {
-	fmt.Printf(p.toString())
+func (p *psu) Print() {
+	fmt.Print(p.ToString())
 }
 
-func (p *psu) toString() string {
-	return fmt.Sprintf("\nMotherboard: %s %s Output: %d W Rating: %s Price: %f", p.manufacturer, p.name, p.capacity, p.rating, p.price)
+func (p *psu) ToString() string {
+	return fmt.Sprintf("\nMotherboard: %s %s Output: %d W Rating: %s Price: %d", p.manufacturer, p.name, p.capacity, p.rating, p.price)
 }

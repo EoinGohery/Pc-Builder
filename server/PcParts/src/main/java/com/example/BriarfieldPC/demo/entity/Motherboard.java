@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,13 +19,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Motherboard {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
-    private String name;
-    private String Manufacturer;
-    private Integer price;
-    private Integer ramSlots;
-    private Integer driveSlots;
-    private Integer maxRam;
-    private String socket;
-    private Integer TDP;
+    public long Id;
+    public String Name;
+    public String Manufacturer;
+    public Integer Price;
+    public Integer RamSlots;
+    public Integer DriveSlots;
+    public Integer MaxRam;
+    public String Socket;
+    public Integer Tdp;
 }

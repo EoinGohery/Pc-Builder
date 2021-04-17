@@ -1,7 +1,7 @@
 package client
 
 import (
-	"CS4227/pkg/filter"
+	"CS4227/pkg/interceptor"
 	"fmt"
 )
 
@@ -14,7 +14,16 @@ func Run() {
 	// var input string
 	// fmt.Scanln(&input)
 
-	all := filter.SendRequest("gpu")
+	var manager interceptor.InterceptorManager
+	var logger interceptor.LoggingInterceptor
+	var filterer interceptor.FilterInterceptor
 
-	fmt.Print(all)
+	manager.SetFilter(filterer)
+	manager.SetLogging(logger)
+
+	all := manager.Execute("cpu", "AM4")
+
+	for i := range all {
+		fmt.Print(all[i].ToString())
+	}
 }

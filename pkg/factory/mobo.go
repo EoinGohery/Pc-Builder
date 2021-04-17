@@ -3,34 +3,42 @@ package factory
 import "fmt"
 
 type iMOBO interface {
+	GetID() int
 	GetManufacturer() string
 	GetName() string
-	GetPrice() float32
+	GetPrice() int
 	GetSocket() string
 	GetTpd() int
 	GetRamSlots() int
 	GetMaxRam() int
 	GetDriveSlots() int
-	setData(name string, price float32, ramSlots int, maxRam int, driveSlots int, socket string, tpd int)
-	toString() string
-	print()
-	add(c component)
+	SetData(id int, name string, price int, ramSlots int, maxRam int, driveSlots int, socket string, tdp int)
+	ToString() string
+	Print()
+	GetFilter() string
+	Add(c Component)
 }
 
 type mobo struct {
-	components   []component
+	components   []Component
+	id           int
 	manufacturer string
 	name         string
-	price        float32
+	price        int
 	socket       string
-	tpd          int
+	tdp          int
 	ramSlots     int
 	maxRam       int
 	driveSlots   int
 }
 
-func (m *mobo) add(c component) {
+func (m *mobo) Add(c Component) {
 	m.components = append(m.components, c)
+}
+
+// GetID returns the string id
+func (m mobo) GetID() int {
+	return m.id
 }
 
 // GetManufacturer returns the string manufacturer
@@ -44,7 +52,7 @@ func (m mobo) GetName() string {
 }
 
 // GetPrice returns the float32 price
-func (m mobo) GetPrice() float32 {
+func (m mobo) GetPrice() int {
 	return m.price
 }
 
@@ -53,9 +61,9 @@ func (m mobo) GetSocket() string {
 	return m.socket
 }
 
-// GetTpd returns the int tpd
+// GetTpd returns the int tdp
 func (m mobo) GetTpd() int {
-	return m.tpd
+	return m.tdp
 }
 
 // GetRamSlot returns the int ramSlots
@@ -73,23 +81,29 @@ func (m mobo) GetDriveSlots() int {
 	return m.driveSlots
 }
 
-func (m *mobo) setData(name string, price float32, ramSlots int, maxRam int, driveSlots int, socket string, tpd int) {
+// GetFilter returns the filterable value if any
+func (m mobo) GetFilter() string {
+	return m.socket
+}
+
+func (m *mobo) SetData(id int, name string, price int, ramSlots int, maxRam int, driveSlots int, socket string, tdp int) {
+	m.id = id
 	m.name = name
 	m.price = price
 	m.socket = socket
-	m.tpd = tpd
+	m.tdp = tdp
 	m.ramSlots = ramSlots
 	m.maxRam = maxRam
 	m.driveSlots = driveSlots
 }
 
-func (m *mobo) print() {
-	fmt.Printf(m.toString())
+func (m *mobo) Print() {
+	fmt.Print(m.ToString())
 	for _, composite := range m.components {
-		composite.print()
+		composite.Print()
 	}
 }
 
-func (m *mobo) toString() string {
-	return fmt.Sprintf("\nMotherboard: %s %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %f", m.manufacturer, m.name, m.maxRam, m.ramSlots, m.driveSlots, m.tpd, m.price)
+func (m *mobo) ToString() string {
+	return fmt.Sprintf("\nMotherboard: %s %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.manufacturer, m.name, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
 }

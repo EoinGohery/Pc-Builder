@@ -19,10 +19,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Ram {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
-    private String Manufacturer;
-    private Integer memory;
-    private String clock;
-    private Integer TDP;
-    private Integer price;
+    public long Id;
+    public String Manufacturer;
+    public Integer Memory;
+    public String Clock;
+    public Integer Tdp;
+    public Integer Price;
 }

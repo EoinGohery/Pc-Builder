@@ -3,7 +3,7 @@ package factory
 type intel struct {
 }
 
-func (i *intel) makeCPU() iCPU {
+func (i *intel) MakeCPU() iCPU {
 	return &intelCPU{
 		cpu: cpu{
 			manufacturer: "Intel",
@@ -11,7 +11,7 @@ func (i *intel) makeCPU() iCPU {
 	}
 }
 
-func (i *intel) makeGPU() iGPU {
+func (i *intel) MakeGPU() iGPU {
 	return &intelGPU{
 		gpu: gpu{
 			manufacturer: "Intel",
@@ -19,7 +19,7 @@ func (i *intel) makeGPU() iGPU {
 	}
 }
 
-func (i *intel) makeMOBO() iMOBO {
+func (i *intel) MakeMOBO() iMOBO {
 	return &intelMOBO{
 		mobo: mobo{
 			manufacturer: "Intel",
@@ -27,7 +27,7 @@ func (i *intel) makeMOBO() iMOBO {
 	}
 }
 
-func (i *intel) makeRAM() iRAM {
+func (i *intel) MakeRAM() iRAM {
 	return &intelRAM{
 		ram: ram{
 			manufacturer: "Intel",
@@ -35,7 +35,7 @@ func (i *intel) makeRAM() iRAM {
 	}
 }
 
-func (i *intel) makeDRIVE() iDRIVE {
+func (i *intel) MakeDRIVE() iDRIVE {
 	return &intelDRIVE{
 		drive: drive{
 			manufacturer: "Intel",
@@ -43,7 +43,7 @@ func (i *intel) makeDRIVE() iDRIVE {
 	}
 }
 
-func (i *intel) makePSU() iPSU {
+func (i *intel) MakePSU() iPSU {
 	return &intelPSU{
 		psu: psu{
 			manufacturer: "Intel",

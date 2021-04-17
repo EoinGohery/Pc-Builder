@@ -1,6 +1,7 @@
 package factory
 
-type component interface {
-	toString() string
-	print()
+type Component interface {
+	ToString() string
+	GetFilter() string
+	Print()
 }

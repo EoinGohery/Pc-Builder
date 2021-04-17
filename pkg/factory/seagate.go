@@ -3,7 +3,7 @@ package factory
 type seagate struct {
 }
 
-func (s *seagate) makeCPU() iCPU {
+func (s *seagate) MakeCPU() iCPU {
 	return &seagateCPU{
 		cpu: cpu{
 			manufacturer: "Seagate",
@@ -11,7 +11,7 @@ func (s *seagate) makeCPU() iCPU {
 	}
 }
 
-func (s *seagate) makeGPU() iGPU {
+func (s *seagate) MakeGPU() iGPU {
 	return &seagateGPU{
 		gpu: gpu{
 			manufacturer: "Seagate",
@@ -19,7 +19,7 @@ func (s *seagate) makeGPU() iGPU {
 	}
 }
 
-func (s *seagate) makeMOBO() iMOBO {
+func (s *seagate) MakeMOBO() iMOBO {
 	return &seagateMOBO{
 		mobo: mobo{
 			manufacturer: "Seagate",
@@ -27,7 +27,7 @@ func (s *seagate) makeMOBO() iMOBO {
 	}
 }
 
-func (s *seagate) makeRAM() iRAM {
+func (s *seagate) MakeRAM() iRAM {
 	return &seagateRAM{
 		ram: ram{
 			manufacturer: "Seagate",
@@ -35,7 +35,7 @@ func (s *seagate) makeRAM() iRAM {
 	}
 }
 
-func (s *seagate) makeDRIVE() iDRIVE {
+func (s *seagate) MakeDRIVE() iDRIVE {
 	return &seagateDRIVE{
 		drive: drive{
 			manufacturer: "Seagate",
@@ -43,7 +43,7 @@ func (s *seagate) makeDRIVE() iDRIVE {
 	}
 }
 
-func (s *seagate) makePSU() iPSU {
+func (s *seagate) MakePSU() iPSU {
 	return &seagatePSU{
 		psu: psu{
 			manufacturer: "Seagate",

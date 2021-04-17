@@ -2,17 +2,17 @@ package factory
 
 import "fmt"
 
-type tower struct {
-	components []component
+type Tower struct {
+	components []Component
 }
 
-func (t *tower) add(c component) {
+func (t *Tower) Add(c Component) {
 	t.components = append(t.components, c)
 }
 
-func (t *tower) Print() {
+func (t *Tower) Print() {
 	fmt.Printf("\nPrinting parts list for selected build:")
 	for _, composite := range t.components {
-		composite.print()
+		composite.Print()
 	}
 }

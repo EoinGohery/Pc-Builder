@@ -19,12 +19,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Gpu {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
-    private String Manufacturer;
+    public long Id;
+    public String Manufacturer;
     @NotBlank(message = "Name cannot be empty or Null")
-    private String gpuName;
-    private String Memory;
-    private String clock;
-    private Integer TDP;
-    private Integer price;
+    public String GpuName;
+    public String Memory;
+    public String Clock;
+    public Integer Tdp;
+    public Integer Price;
 }
