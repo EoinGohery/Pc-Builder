@@ -14,7 +14,7 @@ func Run() {
 	// var input string
 	// fmt.Scanln(&input)
 
-	all := filter.SendRequest("cpu")
+	all := filter.SendRequest("gpu")
 
 	fmt.Print(all)
 }
