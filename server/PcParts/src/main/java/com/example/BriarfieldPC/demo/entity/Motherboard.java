@@ -20,12 +20,12 @@ public class Motherboard {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     public long Id;
-    public String Name;
     public String Manufacturer;
-    public Integer Price;
+    public String Name;
     public Integer RamSlots;
     public Integer DriveSlots;
     public Integer MaxRam;
     public String Socket;
     public Integer Tdp;
+    public Integer Price;
 }

@@ -25,4 +25,5 @@ public class Drive {
     public Integer Size;
     public Integer Tdp;
     public Integer Price;
+    public String technology;
 }

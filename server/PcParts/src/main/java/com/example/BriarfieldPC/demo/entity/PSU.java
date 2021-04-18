@@ -24,6 +24,5 @@ public class PSU {
     public String Name;
     public Integer Price;
     public Integer Capacity;
-    public Integer Rating;
-    public Integer Tdp;
+    public String Rating;
 }
