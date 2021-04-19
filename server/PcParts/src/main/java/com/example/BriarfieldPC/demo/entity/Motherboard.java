@@ -28,5 +28,5 @@ public class Motherboard {
     public String Socket;
     public Integer Tdp;
     public Integer Price;
-    public String Condition;
+    public Integer age;
 }

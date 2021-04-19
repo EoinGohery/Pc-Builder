@@ -26,5 +26,6 @@ public class Drive {
     public Integer Tdp;
     public Integer Price;
     public String technology;
-    public String Condition;
+    public Integer age;
+
 }

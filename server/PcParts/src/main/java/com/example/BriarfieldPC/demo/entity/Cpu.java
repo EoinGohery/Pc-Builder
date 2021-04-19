@@ -27,5 +27,6 @@ public class Cpu {
     public Integer Tdp;
     public String Socket;
     public Integer Price;
-    public String Condition;
+    public Integer age;
+
 }

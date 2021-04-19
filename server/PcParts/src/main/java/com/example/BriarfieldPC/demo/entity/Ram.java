@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,5 +25,5 @@ public class Ram {
     public String Clock;
     public Integer Tdp;
     public Integer Price;
-    public String Condition;
+    public Integer age;
 }

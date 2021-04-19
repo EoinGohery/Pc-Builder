@@ -27,5 +27,6 @@ public class Gpu {
     public String Clock;
     public Integer Tdp;
     public Integer Price;
-    public String Condition;
+    public Integer age;
+
 }
