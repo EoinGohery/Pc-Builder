@@ -11,7 +11,7 @@ type partsFactory interface {
 	MakePSU() iPSU
 }
 
-//GetPartsFactory used to iniitalise parts
+//GetPartsFactory used to initalise parts
 func GetPartsFactory(brand string) (partsFactory, error) {
 	if brand == "amd" {
 		return &amd{}, nil

@@ -1,0 +1,3 @@
+%!!(string=
+ CPU:  A8-7680_clone Cores: 4 Clock Speed: 3.5 to 3.8 GHz Socket: FM2+ tdp: 45 Price: 187)(EXTRA string=
+ CPU:  A8-7680_clone Cores: 4 Clock Speed: 3.5 to 3.8 GHz Socket: FM2+ tdp: 45 Price: 187)

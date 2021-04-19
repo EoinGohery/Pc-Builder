@@ -11,7 +11,9 @@ type iPSU interface {
 	GetCapacity() int
 	SetData(id int, name string, price int, capacity int, rating string)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
 }
 
@@ -68,9 +70,23 @@ func (p *psu) SetData(id int, name string, price int, capacity int, rating strin
 }
 
 func (p *psu) Print() {
-	fmt.Print(p.ToString())
+	fmt.Print(p.PrintIDString())
 }
 
 func (p *psu) ToString() string {
 	return fmt.Sprintf("\nMotherboard: %s %s Output: %d W Rating: %s Price: %d", p.manufacturer, p.name, p.capacity, p.rating, p.price)
+}
+
+func (p *psu) PrintIDString() string {
+	return fmt.Sprintf("\nID: %d Motherboard: %s %s Output: %d W Rating: %s Price: %d", p.id, p.manufacturer, p.name, p.capacity, p.rating, p.price)
+}
+
+func (p *psu) clone() Component {
+	return &psu{
+		id:       p.id,
+		name:     p.name + "_clone",
+		price:    p.price,
+		capacity: p.capacity,
+		rating:   p.rating,
+	}
 }

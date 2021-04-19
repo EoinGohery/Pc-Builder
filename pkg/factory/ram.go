@@ -11,7 +11,9 @@ type iRAM interface {
 	GetMemory() int
 	SetData(id int, name string, price int, memory int, clock string)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
 }
 
@@ -68,9 +70,22 @@ func (r *ram) SetData(id int, name string, price int, memory int, clock string) 
 }
 
 func (r *ram) Print() {
-	fmt.Print(r.ToString())
+	fmt.Print(r.PrintIDString())
 }
 
 func (r *ram) ToString() string {
 	return fmt.Sprintf("\nRam: %s %s Memory: %d Clock Speed: %s Price: %d", r.manufacturer, r.name, r.memory, r.clock, r.price)
+}
+
+func (r *ram) PrintIDString() string {
+	return fmt.Sprintf("\nID: %d Ram: %s %s Memory: %d Clock Speed: %s Price: %d", r.id, r.manufacturer, r.name, r.memory, r.clock, r.price)
+}
+func (r *ram) clone() Component {
+	return &ram{
+		id:     r.id,
+		name:   r.name + "_clone",
+		price:  r.price,
+		memory: r.memory,
+		clock:  r.clock,
+	}
 }

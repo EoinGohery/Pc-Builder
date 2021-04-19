@@ -10,7 +10,9 @@ type iDRIVE interface {
 	GetSize() int
 	SetData(id int, name string, price int, tpd int, size int, technology string)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
 }
 
@@ -74,9 +76,23 @@ func (d *drive) SetData(id int, name string, price int, tpd int, size int, techn
 }
 
 func (d *drive) Print() {
-	fmt.Print(d.ToString())
+	fmt.Print(d.PrintIDString())
 }
 
 func (d *drive) ToString() string {
 	return fmt.Sprintf("\nDrive: %s %s %s Size: %d TPD: %d Price: %d", d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
+}
+func (d *drive) PrintIDString() string {
+	return fmt.Sprintf("\nID: %d Drive: %s %s %s Size: %d TPD: %d Price: %d", d.id, d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
+}
+
+func (d *drive) clone() Component {
+	return &drive{
+		id:         d.id,
+		name:       d.name + "_clone",
+		price:      d.price,
+		tpd:        d.tpd,
+		size:       d.size,
+		technology: d.technology,
+	}
 }
