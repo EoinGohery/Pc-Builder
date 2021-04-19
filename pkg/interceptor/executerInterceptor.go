@@ -1,12 +1,12 @@
 package interceptor
 
 import (
-	"CS4227/pkg/filter"
+	"CS4227/pkg/builder"
 )
 
 type ExecuteInterceptor struct {
 }
 
 func (i ExecuteInterceptor) execute(request string) string {
-	return filter.SendRequest(request)
+	return builder.FireRequest(request)
 }
