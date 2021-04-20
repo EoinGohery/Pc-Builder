@@ -14,6 +14,10 @@ type iDRIVE interface {
 	Print()
 	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type drive struct {
@@ -29,6 +33,11 @@ type drive struct {
 // GetID returns the string id
 func (d drive) GetID() int {
 	return d.id
+}
+
+// SetID for int id
+func (d *drive) SetID(id int) {
+	d.id = id
 }
 
 // GetTpd returns the int tpd
@@ -64,6 +73,21 @@ func (d drive) GetTechnology() string {
 // GetFilter returns the filterable value if any
 func (d drive) GetFilter() string {
 	return ""
+}
+
+// GetDriveSlots returns the string id
+func (d drive) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (d drive) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (d *drive) Add(Component) {
+
 }
 
 func (d *drive) SetData(id int, name string, price int, tpd int, size int, technology string) {

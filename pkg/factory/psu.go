@@ -15,6 +15,10 @@ type iPSU interface {
 	Print()
 	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type psu struct {
@@ -29,6 +33,11 @@ type psu struct {
 // GetID returns the string id
 func (p psu) GetID() int {
 	return p.id
+}
+
+// SetID for int id
+func (p *psu) SetID(id int) {
+	p.id = id
 }
 
 // GetName returns the string name
@@ -61,6 +70,21 @@ func (p psu) GetFilter() string {
 	return ""
 }
 
+// GetDriveSlots returns the string id
+func (p psu) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (p psu) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (p *psu) Add(Component) {
+
+}
+
 func (p *psu) SetData(id int, name string, price int, capacity int, rating string) {
 	p.id = id
 	p.name = name
@@ -74,11 +98,11 @@ func (p *psu) Print() {
 }
 
 func (p *psu) ToString() string {
-	return fmt.Sprintf("\nMotherboard: %s %s Output: %d W Rating: %s Price: %d", p.manufacturer, p.name, p.capacity, p.rating, p.price)
+	return fmt.Sprintf("\nPSU: %s %s Output: %d W Rating: %s Price: %d", p.manufacturer, p.name, p.capacity, p.rating, p.price)
 }
 
 func (p *psu) PrintIDString() string {
-	return fmt.Sprintf("\nID: %d Motherboard: %s %s Output: %d W Rating: %s Price: %d", p.id, p.manufacturer, p.name, p.capacity, p.rating, p.price)
+	return fmt.Sprintf("\nID: %d PSU: %s %s Output: %d W Rating: %s Price: %d", p.id, p.manufacturer, p.name, p.capacity, p.rating, p.price)
 }
 
 func (p *psu) clone() Component {

@@ -16,6 +16,10 @@ type iCPU interface {
 	Print()
 	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type cpu struct {
@@ -32,6 +36,11 @@ type cpu struct {
 // GetID returns the string id
 func (c cpu) GetID() int {
 	return c.id
+}
+
+// SetID for int id
+func (c *cpu) SetID(id int) {
+	c.id = id
 }
 
 // GetManufacturer returns the string manufacturer
@@ -74,6 +83,21 @@ func (c cpu) GetFilter() string {
 	return c.socket
 }
 
+// GetDriveSlots returns the string id
+func (c cpu) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (c cpu) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (c *cpu) Add(Component) {
+
+}
+
 func (c *cpu) SetData(id int, name string, price int, cores int, clock string, socket string, tdp int) {
 	c.id = id
 	c.name = name
@@ -89,7 +113,7 @@ func (c *cpu) Print() {
 }
 
 func (c *cpu) ToString() string {
-	return fmt.Sprintf("\n CPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
+	return fmt.Sprintf("\nCPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
 }
 
 func (c *cpu) PrintIDString() string {

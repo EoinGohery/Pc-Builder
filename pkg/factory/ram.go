@@ -15,6 +15,10 @@ type iRAM interface {
 	Print()
 	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type ram struct {
@@ -29,6 +33,11 @@ type ram struct {
 // GetID returns the string id
 func (r ram) GetID() int {
 	return r.id
+}
+
+// SetID for int id
+func (r *ram) SetID(id int) {
+	r.id = id
 }
 
 // GetName returns the string name
@@ -59,6 +68,21 @@ func (r ram) GetMemory() int {
 // GetFilter returns the filterable value if any
 func (r ram) GetFilter() string {
 	return ""
+}
+
+// GetDriveSlots returns the string id
+func (r ram) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (r ram) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (r *ram) Add(Component) {
+
 }
 
 func (r *ram) SetData(id int, name string, price int, memory int, clock string) {

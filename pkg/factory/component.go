@@ -6,5 +6,9 @@ type Component interface {
 	Print()
 	PrintIDString() string
 	GetID() int
+	SetID(id int)
+	GetRamSlots() int
+	GetDriveSlots() int
 	clone() Component
+	Add(Component)
 }

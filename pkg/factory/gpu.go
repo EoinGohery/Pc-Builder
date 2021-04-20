@@ -15,6 +15,10 @@ type iGPU interface {
 	Print()
 	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type gpu struct {
@@ -30,6 +34,11 @@ type gpu struct {
 // GetID returns the string id
 func (g gpu) GetID() int {
 	return g.id
+}
+
+// SetID for int id
+func (g *gpu) SetID(id int) {
+	g.id = id
 }
 
 // GetName returns the string name
@@ -65,6 +74,21 @@ func (g gpu) GetTpd() int {
 // GetFilter returns the filterable value if any
 func (g gpu) GetFilter() string {
 	return ""
+}
+
+// GetDriveSlots returns the string id
+func (g gpu) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (g gpu) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (g *gpu) Add(Component) {
+
 }
 
 func (g *gpu) SetData(id int, name string, price int, tdp int, memory int, clock string) {

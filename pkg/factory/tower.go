@@ -18,13 +18,15 @@ func (t *Tower) Print() {
 		composite.Print()
 	}
 }
+
 func (t *Tower) ToString() string {
 	var result string
 	for _, composite := range t.components {
-		result = fmt.Sprintf(result, composite.ToString())
+		result = fmt.Sprintf("%s%s", result, composite.ToString())
 	}
 	return result
 }
+
 func (t *Tower) Clone() Tower {
 	cloneBuild := &Tower{name: t.name + "_clone"}
 	var tempComponent []Component

@@ -1,3 +1,10 @@
-%!!(string=
- CPU:  A8-7680_clone Cores: 4 Clock Speed: 3.5 to 3.8 GHz Socket: FM2+ tdp: 45 Price: 187)(EXTRA string=
- CPU:  A8-7680_clone Cores: 4 Clock Speed: 3.5 to 3.8 GHz Socket: FM2+ tdp: 45 Price: 187)
+
+GPU:  _clone  Clock Speed: 1844 Mhz Memory: 3 tdp: 153 Price: 88
+Drive:  Baracuda_clone SSD Size: 600 TPD: 220 Price: 26
+Motherboard:  ROG SF_clone Output: 300 W Rating: Bronze Price: 185
+Motherboard:  Tomahawk_clone Socket 1200 Max Ram: 32 Ram Slots: 4  Drive Slots: 5 TPD: 50 Price: 100
+CPU:  Core i5-10400F_clone Cores: 6 Clock Speed: 2.9 to 4.3 GHz Socket: 1200 tdp: 65 Price: 185
+Ram:  Vengence_clone Memory: 2 Clock Speed: 1582 Mhz Price: 31
+Ram:  Vengence_clone Memory: 2 Clock Speed: 1582 Mhz Price: 31
+Ram:  Vengence_clone Memory: 2 Clock Speed: 1582 Mhz Price: 31
+Ram:  Vengence_clone Memory: 2 Clock Speed: 1582 Mhz Price: 31

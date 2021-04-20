@@ -9,6 +9,20 @@ import (
 )
 
 var Tower factory.Tower
+var cpuPresent bool = false
+var moboPresent bool = false
+var gpuPresent bool = false
+var psuPresent bool = false
+
+var drivesPresent int = 0
+var driveSlots int = 0
+var ramPresent int = 0
+var ramSlots int = 0
+
+var filter string = ""
+var skip bool = false
+
+var motherboard factory.Component
 
 func partPicker(picker int, built bool) []factory.Component {
 	var manager interceptor.InterceptorManager
@@ -19,50 +33,94 @@ func partPicker(picker int, built bool) []factory.Component {
 	manager.SetLogging(logger)
 
 	if picker == 1 {
-		part := manager.Execute("cpu", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		part := manager.Execute("cpu", filter)
+		if !cpuPresent && moboPresent {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			fmt.Print("Cpu already added to build or motherboard has not been")
+			skip = true
 		}
-		return part
 
 	} else if picker == 2 {
 		//gpu
 		part := manager.Execute("gpu", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		if !gpuPresent {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			fmt.Print("Gpu already added to build")
+			skip = true
 		}
-		return part
 
 	} else if picker == 3 {
 		//psu
 		part := manager.Execute("psu", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		if !psuPresent {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			fmt.Print("PSU already added to build")
+			skip = true
 		}
-		return part
 
 	} else if picker == 4 {
 		//ram
 		part := manager.Execute("ram", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		if ramPresent < ramSlots {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			if moboPresent {
+				fmt.Println("Max ram cards have been reached.")
+			} else {
+				fmt.Println("Select your motherboard first")
+			}
+			skip = true
 		}
-		return part
 	} else if picker == 5 {
 		//mobo
 		part := manager.Execute("mbd", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		if !moboPresent {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			fmt.Print("Motherboard already added to build")
+			skip = true
 		}
-		return part
 
 	} else if picker == 6 {
 		//drive
 		part := manager.Execute("drive", "")
-		for i := range part {
-			fmt.Print(part[i].PrintIDString())
+		if drivesPresent < driveSlots {
+			for i := range part {
+				fmt.Print(part[i].PrintIDString())
+			}
+			skip = false
+			return part
+		} else {
+			if moboPresent {
+				fmt.Println("Max hard driveshave been reached.")
+			} else {
+				fmt.Println("Select your motherboard first")
+			}
+			skip = true
 		}
-		return part
 
 	} else if picker == 7 {
 		fmt.Println("Build Finished/Cancelled, Exiting")
@@ -73,42 +131,49 @@ func partPicker(picker int, built bool) []factory.Component {
 }
 
 func getpartbyid(picker int, id int, partlist []factory.Component) factory.Component {
-	var part factory.Component
-
-	if picker == 1 {
-		//cpu
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-		return partlist[id]
-	} else if picker == 2 {
-		//gpu
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-		return partlist[id]
-	} else if picker == 3 {
-		//psu
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-		return partlist[id]
-	} else if picker == 4 {
-		//ram
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-		return partlist[id]
-	} else if picker == 5 {
-		//mobo
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-		return partlist[id]
-	} else if picker == 6 {
-		//drive
-		partlist[id].Print()
-		Tower.Add(partlist[id])
-
-		return partlist[id]
-
+	if (id + 1) <= len(partlist) {
+		var part factory.Component = partlist[id]
+		if picker == 1 {
+			//cpu
+			part.Print()
+			filter = part.GetFilter()
+			motherboard.Add(part)
+			cpuPresent = true
+		} else if picker == 2 {
+			//gpu
+			part.Print()
+			Tower.Add(part)
+			gpuPresent = true
+		} else if picker == 3 {
+			//psu
+			part.Print()
+			Tower.Add(part)
+			psuPresent = true
+		} else if picker == 4 {
+			//ram
+			part.Print()
+			motherboard.Add(part)
+			ramPresent += 1
+		} else if picker == 5 {
+			//mobo
+			part.Print()
+			filter = part.GetFilter()
+			motherboard = part
+			moboPresent = true
+			ramSlots = part.GetRamSlots()
+			driveSlots = part.GetDriveSlots()
+		} else if picker == 6 {
+			//drive
+			part.Print()
+			Tower.Add(part)
+			drivesPresent += 1
+		} else if picker > 6 {
+			part = nil
+		}
+		return part
+	} else {
+		return nil
 	}
-	return part
 }
 
 func getUserInput() bool {
@@ -116,16 +181,18 @@ func getUserInput() bool {
 	var built bool
 	var part []factory.Component
 	fmt.Println("")
-	fmt.Println("PC Parts -  1: CPU, 2: GPU, 3: PSU, 4: Ram, 5: Motherboard, 6: Drive; 7: Finish ")
+	fmt.Println("\nPC Parts -  1: CPU, 2: GPU, 3: PSU, 4: Ram, 5: Motherboard, 6: Drive; 7: Finish ")
 	fmt.Scanln(&picker)
-	if picker == 7 {
+	if picker > 6 {
 		return false
 	} else {
 		part = partPicker(picker, built)
+		if part != nil && !skip {
+			fmt.Println("\nPick One part!")
+			fmt.Scanln(&id)
+			getpartbyid(picker, id-1, part)
+		}
 	}
-	fmt.Println("\nPick One part!")
-	fmt.Scanln(&id)
-	getpartbyid(picker, id-1, part)
 	return true
 }
 
@@ -149,9 +216,9 @@ func Run() {
 	manager.SetFilter(filterer)
 	manager.SetLogging(logger)
 
-	Tower.Print()
+	Tower.Add(motherboard)
+	fmt.Println(Tower.ToString())
 	cloneTower := Tower.Clone()
-	cloneTower.Print()
 
 	//write clone to file
 	f, err := os.Create("TowerBuildClone.txt")
