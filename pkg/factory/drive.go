@@ -10,8 +10,14 @@ type iDRIVE interface {
 	GetSize() int
 	SetData(id int, name string, price int, tpd int, size int, technology string)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type drive struct {
@@ -27,6 +33,11 @@ type drive struct {
 // GetID returns the string id
 func (d drive) GetID() int {
 	return d.id
+}
+
+// SetID for int id
+func (d *drive) SetID(id int) {
+	d.id = id
 }
 
 // GetTpd returns the int tpd
@@ -64,6 +75,21 @@ func (d drive) GetFilter() string {
 	return ""
 }
 
+// GetDriveSlots returns the string id
+func (d drive) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (d drive) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (d *drive) Add(Component) {
+
+}
+
 func (d *drive) SetData(id int, name string, price int, tpd int, size int, technology string) {
 	d.id = id
 	d.name = name
@@ -74,9 +100,23 @@ func (d *drive) SetData(id int, name string, price int, tpd int, size int, techn
 }
 
 func (d *drive) Print() {
-	fmt.Print(d.ToString())
+	fmt.Print(d.PrintIDString())
 }
 
 func (d *drive) ToString() string {
 	return fmt.Sprintf("\nDrive: %s %s %s Size: %d TPD: %d Price: %d", d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
+}
+func (d *drive) PrintIDString() string {
+	return fmt.Sprintf("\nID: %d Drive: %s %s %s Size: %d TPD: %d Price: %d", d.id, d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
+}
+
+func (d *drive) clone() Component {
+	return &drive{
+		id:         d.id,
+		name:       d.name + "_clone",
+		price:      d.price,
+		tpd:        d.tpd,
+		size:       d.size,
+		technology: d.technology,
+	}
 }

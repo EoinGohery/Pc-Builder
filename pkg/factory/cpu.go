@@ -10,10 +10,16 @@ type iCPU interface {
 	GetClock() string
 	GetSocket() string
 	GetTpd() int
-	SetData(id int, name string, price int, cores int, clock string, socket string, tpd int)
+	SetData(id int, name string, price int, cores int, clock string, socket string, tdp int)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
+	GetRamSlots() int
+	GetDriveSlots() int
+	SetID(id int)
+	Add(Component)
 }
 
 type cpu struct {
@@ -24,12 +30,17 @@ type cpu struct {
 	cores        int
 	clock        string
 	socket       string
-	tpd          int
+	tdp          int
 }
 
 // GetID returns the string id
 func (c cpu) GetID() int {
 	return c.id
+}
+
+// SetID for int id
+func (c *cpu) SetID(id int) {
+	c.id = id
 }
 
 // GetManufacturer returns the string manufacturer
@@ -62,9 +73,9 @@ func (c cpu) GetSocket() string {
 	return c.socket
 }
 
-// GetTpd returns the int tpd
+// GetTpd returns the int tdp
 func (c cpu) GetTpd() int {
-	return c.tpd
+	return c.tdp
 }
 
 // GetFilter returns the filterable value if any
@@ -72,20 +83,51 @@ func (c cpu) GetFilter() string {
 	return c.socket
 }
 
-func (c *cpu) SetData(id int, name string, price int, cores int, clock string, socket string, tpd int) {
+// GetDriveSlots returns the string id
+func (c cpu) GetDriveSlots() int {
+	return 0
+}
+
+// GetRamSlots returns the string id
+func (c cpu) GetRamSlots() int {
+	return 0
+}
+
+// Add does nothing for this part
+func (c *cpu) Add(Component) {
+
+}
+
+func (c *cpu) SetData(id int, name string, price int, cores int, clock string, socket string, tdp int) {
 	c.id = id
 	c.name = name
 	c.price = price
 	c.cores = cores
 	c.clock = clock
 	c.socket = socket
-	c.tpd = tpd
+	c.tdp = tdp
 }
 
 func (c *cpu) Print() {
-	fmt.Print(c.ToString())
+	fmt.Print(c.PrintIDString())
 }
 
 func (c *cpu) ToString() string {
-	return fmt.Sprintf("\nCPU: %s %s Cores: %d Clock Speed: %s Socket: %s TPD: %d Price: %d", c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tpd, c.price)
+	return fmt.Sprintf("\nCPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
+}
+
+func (c *cpu) PrintIDString() string {
+	return fmt.Sprintf("\nID: %v CPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.id, c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
+}
+
+func (c *cpu) clone() Component {
+	return &cpu{
+		id:     c.id,
+		name:   c.name + "_clone",
+		price:  c.price,
+		cores:  c.cores,
+		clock:  c.clock,
+		socket: c.socket,
+		tdp:    c.tdp,
+	}
 }

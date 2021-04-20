@@ -14,9 +14,12 @@ type iMOBO interface {
 	GetDriveSlots() int
 	SetData(id int, name string, price int, ramSlots int, maxRam int, driveSlots int, socket string, tdp int)
 	ToString() string
+	PrintIDString() string
 	Print()
+	clone() Component
 	GetFilter() string
 	Add(c Component)
+	SetID(id int)
 }
 
 type mobo struct {
@@ -39,6 +42,11 @@ func (m *mobo) Add(c Component) {
 // GetID returns the string id
 func (m mobo) GetID() int {
 	return m.id
+}
+
+// SetID for int id
+func (m *mobo) SetID(id int) {
+	m.id = id
 }
 
 // GetManufacturer returns the string manufacturer
@@ -98,12 +106,40 @@ func (m *mobo) SetData(id int, name string, price int, ramSlots int, maxRam int,
 }
 
 func (m *mobo) Print() {
-	fmt.Print(m.ToString())
+	fmt.Print(m.PrintIDString())
 	for _, composite := range m.components {
 		composite.Print()
 	}
 }
 
 func (m *mobo) ToString() string {
-	return fmt.Sprintf("\nMotherboard: %s %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.manufacturer, m.name, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
+	var result = fmt.Sprintf("\nMotherboard: %s %s Socket %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.manufacturer, m.name, m.socket, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
+	for _, composite := range m.components {
+		result = fmt.Sprintf("%s%s", result, composite.ToString())
+	}
+	return result
+}
+
+func (m *mobo) PrintIDString() string {
+	return fmt.Sprintf("\nID: %d Motherboard: %s %s Socket %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.id, m.manufacturer, m.name, m.socket, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
+}
+
+func (m *mobo) clone() Component {
+	cloneBuild := &mobo{
+		id:         m.id,
+		name:       m.name + "_clone",
+		price:      m.price,
+		socket:     m.socket,
+		tdp:        m.tdp,
+		ramSlots:   m.ramSlots,
+		maxRam:     m.maxRam,
+		driveSlots: m.driveSlots,
+	}
+	var tempComponent []Component
+	for _, i := range m.components {
+		copy := i.clone()
+		tempComponent = append(tempComponent, copy)
+	}
+	cloneBuild.components = tempComponent
+	return cloneBuild
 }

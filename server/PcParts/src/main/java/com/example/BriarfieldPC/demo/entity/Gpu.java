@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.validation.constraints.NotBlank;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,9 +20,8 @@ public class Gpu {
     @GeneratedValue(strategy = IDENTITY)
     public long Id;
     public String Manufacturer;
-    @NotBlank(message = "Name cannot be empty or Null")
-    public String GpuName;
-    public String Memory;
+    public String Name;
+    public int Memory;
     public String Clock;
     public Integer Tdp;
     public Integer Price;

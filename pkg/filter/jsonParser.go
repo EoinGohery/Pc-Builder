@@ -24,7 +24,7 @@ type drive struct {
 	Manufacturer string
 	Price        int
 	Size         int
-	Tpd          int
+	Tdp          int
 	Technology   string
 }
 
@@ -35,7 +35,7 @@ type gpu struct {
 	Price        int
 	Memory       int
 	Clock        string
-	Tpd          int
+	Tdp          int
 }
 
 type mobo struct {
@@ -138,31 +138,31 @@ func JsonParse(request string, data string) []factory.Component {
 			manufacturer := strings.ToLower(object.Manufacturer)
 			if manufacturer == "asus" {
 				made := asusFactory.MakeGPU()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Memory, object.Clock)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Memory, object.Clock)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "amd" {
 				made := amdFactory.MakeGPU()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Memory, object.Clock)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Memory, object.Clock)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "intel" {
 				made := intelFactory.MakeGPU()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Memory, object.Clock)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Memory, object.Clock)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "nvidia" {
 				made := nvidiaFactory.MakeGPU()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Memory, object.Clock)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Memory, object.Clock)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "seagate" {
 				made := seagateFactory.MakeGPU()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Memory, object.Clock)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Memory, object.Clock)
 				returned = append(returned, made)
 			}
 		}
@@ -182,31 +182,31 @@ func JsonParse(request string, data string) []factory.Component {
 			manufacturer := strings.ToLower(object.Manufacturer)
 			if manufacturer == "asus" {
 				made := asusFactory.MakeDRIVE()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Size, object.Technology)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Size, object.Technology)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "amd" {
 				made := amdFactory.MakeDRIVE()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Size, object.Technology)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Size, object.Technology)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "intel" {
 				made := intelFactory.MakeDRIVE()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Size, object.Technology)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Size, object.Technology)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "nvidia" {
 				made := nvidiaFactory.MakeDRIVE()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Size, object.Technology)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Size, object.Technology)
 				returned = append(returned, made)
 			}
 
 			if manufacturer == "seagate" {
 				made := seagateFactory.MakeDRIVE()
-				made.SetData(object.Id, object.Name, object.Price, object.Tpd, object.Size, object.Technology)
+				made.SetData(object.Id, object.Name, object.Price, object.Tdp, object.Size, object.Technology)
 				returned = append(returned, made)
 			}
 		}
