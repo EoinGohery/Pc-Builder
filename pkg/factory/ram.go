@@ -85,6 +85,7 @@ func (r *ram) Add(Component) {
 
 }
 
+//set the data of a created object
 func (r *ram) SetData(id int, name string, price int, memory int, clock string) {
 	r.id = id
 	r.name = name
@@ -93,17 +94,22 @@ func (r *ram) SetData(id int, name string, price int, memory int, clock string) 
 	r.clock = clock
 }
 
+//prints the data with id
 func (r *ram) Print() {
 	fmt.Print(r.PrintIDString())
 }
 
+//string for final print statement to file
 func (r *ram) ToString() string {
 	return fmt.Sprintf("\nRam: %s %s Memory: %d Clock Speed: %s Price: %d", r.manufacturer, r.name, r.memory, r.clock, r.price)
 }
 
+//print statement for get all list
 func (r *ram) PrintIDString() string {
 	return fmt.Sprintf("\nID: %d Ram: %s %s Memory: %d Clock Speed: %s Price: %d", r.id, r.manufacturer, r.name, r.memory, r.clock, r.price)
 }
+
+//clone function to allow for prototyping
 func (r *ram) clone() Component {
 	return &ram{
 		id:     r.id,

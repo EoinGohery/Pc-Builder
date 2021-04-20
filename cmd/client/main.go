@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+//build components
 var Tower factory.Tower
 var cpuPresent bool = false
 var moboPresent bool = false
@@ -24,6 +25,7 @@ var skip bool = false
 
 var motherboard factory.Component
 
+//used when selecting the category of component to search
 func partPicker(picker int, built bool) []factory.Component {
 	var manager interceptor.InterceptorManager
 	var logger interceptor.LoggingInterceptor
@@ -34,14 +36,17 @@ func partPicker(picker int, built bool) []factory.Component {
 
 	if picker == 1 {
 		part := manager.Execute("cpu", filter)
+		//motherboard must be present
 		if !cpuPresent && moboPresent {
 			for i := range part {
 				fmt.Print(part[i].PrintIDString())
 			}
+			//setting skip to false enable the getpartbyid method
 			skip = false
 			return part
 		} else {
 			fmt.Print("Cpu already added to build or motherboard has not been")
+			//setting skip to true disables the getpartbyid method
 			skip = true
 		}
 
@@ -130,6 +135,7 @@ func partPicker(picker int, built bool) []factory.Component {
 
 }
 
+//get the selected item from the list printed
 func getpartbyid(picker int, id int, partlist []factory.Component) factory.Component {
 	if (id + 1) <= len(partlist) {
 		var part factory.Component = partlist[id]
@@ -137,6 +143,7 @@ func getpartbyid(picker int, id int, partlist []factory.Component) factory.Compo
 			//cpu
 			part.Print()
 			filter = part.GetFilter()
+			//add cpu to motherboard and not tower
 			motherboard.Add(part)
 			cpuPresent = true
 		} else if picker == 2 {
@@ -157,9 +164,12 @@ func getpartbyid(picker int, id int, partlist []factory.Component) factory.Compo
 		} else if picker == 5 {
 			//mobo
 			part.Print()
+			//get teh sovket of teh motherboard and set the filter
 			filter = part.GetFilter()
+			//set teh global moptherboard object to the selected motherboard
 			motherboard = part
 			moboPresent = true
+			//set the max available slots for ram and drives
 			ramSlots = part.GetRamSlots()
 			driveSlots = part.GetDriveSlots()
 		} else if picker == 6 {
@@ -167,6 +177,7 @@ func getpartbyid(picker int, id int, partlist []factory.Component) factory.Compo
 			part.Print()
 			Tower.Add(part)
 			drivesPresent += 1
+			//invalid input
 		} else if picker > 6 {
 			part = nil
 		}
@@ -176,6 +187,7 @@ func getpartbyid(picker int, id int, partlist []factory.Component) factory.Compo
 	}
 }
 
+//funtion that loops to request the object categories and ids
 func getUserInput() bool {
 	var picker, id int
 	var built bool
@@ -200,7 +212,7 @@ func getUserInput() bool {
 func Run() {
 
 	fmt.Println("Welcome to the PC Builder")
-	// what part is required
+	//loops until the user selcts exit
 	for {
 
 		if !getUserInput() {
@@ -209,13 +221,7 @@ func Run() {
 
 	}
 
-	// Composite and Prototype in practise
-	var manager interceptor.InterceptorManager
-	var logger interceptor.LoggingInterceptor
-	var filterer interceptor.FilterInterceptor
-	manager.SetFilter(filterer)
-	manager.SetLogging(logger)
-
+	//add the global motherboard variable to teh build
 	Tower.Add(motherboard)
 	fmt.Println(Tower.ToString())
 	cloneTower := Tower.Clone()

@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+//sends the request, triggered by executer interceptor
 func FireRequest(input string) string {
 	partBuilder := GetBuilder(input)
 	director := NewDirector(partBuilder)

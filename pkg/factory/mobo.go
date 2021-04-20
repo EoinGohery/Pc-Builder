@@ -35,6 +35,7 @@ type mobo struct {
 	driveSlots   int
 }
 
+//used to add the componenes to teh composite structure
 func (m *mobo) Add(c Component) {
 	m.components = append(m.components, c)
 }
@@ -94,6 +95,7 @@ func (m mobo) GetFilter() string {
 	return m.socket
 }
 
+//set the data of a created object
 func (m *mobo) SetData(id int, name string, price int, ramSlots int, maxRam int, driveSlots int, socket string, tdp int) {
 	m.id = id
 	m.name = name
@@ -105,6 +107,7 @@ func (m *mobo) SetData(id int, name string, price int, ramSlots int, maxRam int,
 	m.driveSlots = driveSlots
 }
 
+//prints the data with id
 func (m *mobo) Print() {
 	fmt.Print(m.PrintIDString())
 	for _, composite := range m.components {
@@ -112,6 +115,7 @@ func (m *mobo) Print() {
 	}
 }
 
+//string for final print statement to file
 func (m *mobo) ToString() string {
 	var result = fmt.Sprintf("\nMotherboard: %s %s Socket %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.manufacturer, m.name, m.socket, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
 	for _, composite := range m.components {
@@ -120,10 +124,12 @@ func (m *mobo) ToString() string {
 	return result
 }
 
+//print statement for get all list
 func (m *mobo) PrintIDString() string {
 	return fmt.Sprintf("\nID: %d Motherboard: %s %s Socket %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.id, m.manufacturer, m.name, m.socket, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
 }
 
+//clone function to allow for recurssive prototyping of components contained in teh object
 func (m *mobo) clone() Component {
 	cloneBuild := &mobo{
 		id:         m.id,

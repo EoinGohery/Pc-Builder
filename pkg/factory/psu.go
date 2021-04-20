@@ -85,6 +85,7 @@ func (p *psu) Add(Component) {
 
 }
 
+//set the data of a created object
 func (p *psu) SetData(id int, name string, price int, capacity int, rating string) {
 	p.id = id
 	p.name = name
@@ -93,18 +94,23 @@ func (p *psu) SetData(id int, name string, price int, capacity int, rating strin
 	p.rating = rating
 }
 
+//prints the data with id
 func (p *psu) Print() {
 	fmt.Print(p.PrintIDString())
 }
 
+//string for final print statement to file
 func (p *psu) ToString() string {
 	return fmt.Sprintf("\nPSU: %s %s Output: %d W Rating: %s Price: %d", p.manufacturer, p.name, p.capacity, p.rating, p.price)
+
 }
 
+//print statement for get all list
 func (p *psu) PrintIDString() string {
 	return fmt.Sprintf("\nID: %d PSU: %s %s Output: %d W Rating: %s Price: %d", p.id, p.manufacturer, p.name, p.capacity, p.rating, p.price)
 }
 
+//clone function to allow for prototyping
 func (p *psu) clone() Component {
 	return &psu{
 		id:       p.id,

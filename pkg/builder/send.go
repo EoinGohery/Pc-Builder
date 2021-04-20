@@ -10,6 +10,7 @@ import (
 type send struct {
 }
 
+//visitor methods that trigger the get request
 func (s *send) visitForCPU(b *cpuBuilder) {
 	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {

@@ -90,6 +90,7 @@ func (d *drive) Add(Component) {
 
 }
 
+//set the data of a created object
 func (d *drive) SetData(id int, name string, price int, tpd int, size int, technology string) {
 	d.id = id
 	d.name = name
@@ -99,17 +100,22 @@ func (d *drive) SetData(id int, name string, price int, tpd int, size int, techn
 	d.technology = technology
 }
 
+//prints the data with id
 func (d *drive) Print() {
 	fmt.Print(d.PrintIDString())
 }
 
+//string for final print statement to file
 func (d *drive) ToString() string {
 	return fmt.Sprintf("\nDrive: %s %s %s Size: %d TPD: %d Price: %d", d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
 }
+
+//print statement for get all list
 func (d *drive) PrintIDString() string {
 	return fmt.Sprintf("\nID: %d Drive: %s %s %s Size: %d TPD: %d Price: %d", d.id, d.manufacturer, d.name, d.technology, d.size, d.tpd, d.price)
 }
 
+//clone function to allow for prototyping
 func (d *drive) clone() Component {
 	return &drive{
 		id:         d.id,

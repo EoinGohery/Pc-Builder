@@ -3,6 +3,7 @@ package factory
 type amd struct {
 }
 
+//Make objects for this manufacturer
 func (a *amd) MakeCPU() iCPU {
 	return &amdCPU{
 		cpu: cpu{

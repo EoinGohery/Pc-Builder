@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+//struccts for Json Unmarshelling
 type cpu struct {
 	Id           int
 	Manufacturer string
@@ -68,6 +69,7 @@ type ram struct {
 	Memory       int
 }
 
+//parseer to parse the Json data and convert it ot usable objects using the abstract factory
 func JsonParse(request string, data string) []factory.Component {
 	asusFactory, _ := factory.GetPartsFactory("asus")
 	amdFactory, _ := factory.GetPartsFactory("amd")
@@ -83,12 +85,14 @@ func JsonParse(request string, data string) []factory.Component {
 	if request == "cpu" {
 		var result []cpu
 
+		//auto  converts th Jsoto the cpu object
 		jsonErr := json.Unmarshal([]byte(data), &result)
 
 		if jsonErr != nil {
 			log.Fatal(jsonErr)
 		}
 
+		//create each cpu with its factory
 		for i := range result {
 			object := result[i]
 			manufacturer := strings.ToLower(object.Manufacturer)

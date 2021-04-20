@@ -3,6 +3,7 @@ package factory
 type nvidia struct {
 }
 
+//Make objects for this manufacturer
 func (n *nvidia) MakeCPU() iCPU {
 	return &nvidiaCPU{
 		cpu: cpu{

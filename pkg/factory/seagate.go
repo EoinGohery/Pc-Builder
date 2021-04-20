@@ -3,6 +3,7 @@ package factory
 type seagate struct {
 }
 
+//Make objects for this manufacturer
 func (s *seagate) MakeCPU() iCPU {
 	return &seagateCPU{
 		cpu: cpu{

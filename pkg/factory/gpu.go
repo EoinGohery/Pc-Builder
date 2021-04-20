@@ -91,6 +91,7 @@ func (g *gpu) Add(Component) {
 
 }
 
+//set the data of a created object
 func (g *gpu) SetData(id int, name string, price int, tdp int, memory int, clock string) {
 	g.id = id
 	g.name = name
@@ -100,18 +101,22 @@ func (g *gpu) SetData(id int, name string, price int, tdp int, memory int, clock
 	g.clock = clock
 }
 
+//prints the data with id
 func (g *gpu) Print() {
 	fmt.Print(g.PrintIDString())
 }
 
+//string for final print statement to file
 func (g *gpu) ToString() string {
 	return fmt.Sprintf("\nGPU: %s %s  Clock Speed: %s Memory: %d tdp: %d Price: %d", g.manufacturer, g.name, g.clock, g.memory, g.tdp, g.price)
 }
 
+//print statement for get all list
 func (g *gpu) PrintIDString() string {
 	return fmt.Sprintf("\nID: %v GPU: %s %s  Clock Speed: %s Memory: %d tdp: %d Price: %d", g.id, g.manufacturer, g.name, g.clock, g.memory, g.tdp, g.price)
 }
 
+//clone function to allow for prototyping
 func (g *gpu) clone() Component {
 	return &gpu{
 		id:     g.id,

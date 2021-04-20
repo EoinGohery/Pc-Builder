@@ -1,5 +1,7 @@
 package factory
 
+//component interfce to allow access to all part types from a slice od a single type.
+//allows for composite structure of the pc
 type Component interface {
 	ToString() string
 	GetFilter() string

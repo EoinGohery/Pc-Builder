@@ -5,6 +5,7 @@ type iBuilder interface {
 	getRequest() request
 }
 
+//create the builder othe correct type
 func GetBuilder(builderType string) iBuilder {
 	if builderType == "cpu" {
 		return &cpuBuilder{}

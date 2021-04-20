@@ -3,6 +3,7 @@ package factory
 type asus struct {
 }
 
+//Make objects for this manufacturer
 func (a *asus) MakeCPU() iCPU {
 	return &asusCPU{
 		cpu: cpu{

@@ -3,6 +3,7 @@ package factory
 type intel struct {
 }
 
+//Make objects for this manufacturer
 func (i *intel) MakeCPU() iCPU {
 	return &intelCPU{
 		cpu: cpu{
