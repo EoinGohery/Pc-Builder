@@ -98,6 +98,7 @@ func (c *cpu) Add(Component) {
 
 }
 
+//set the data of a created object
 func (c *cpu) SetData(id int, name string, price int, cores int, clock string, socket string, tdp int) {
 	c.id = id
 	c.name = name
@@ -108,18 +109,22 @@ func (c *cpu) SetData(id int, name string, price int, cores int, clock string, s
 	c.tdp = tdp
 }
 
+//prints the data with id
 func (c *cpu) Print() {
 	fmt.Print(c.PrintIDString())
 }
 
+//string for final print statement to file
 func (c *cpu) ToString() string {
 	return fmt.Sprintf("\nCPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
 }
 
+//print statement for get all list
 func (c *cpu) PrintIDString() string {
 	return fmt.Sprintf("\nID: %v CPU: %s %s Cores: %d Clock Speed: %s Socket: %s tdp: %d Price: %d", c.id, c.manufacturer, c.name, c.cores, c.clock, c.socket, c.tdp, c.price)
 }
 
+//clone function to allow for prototyping
 func (c *cpu) clone() Component {
 	return &cpu{
 		id:     c.id,
