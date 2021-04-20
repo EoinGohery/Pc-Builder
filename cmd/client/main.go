@@ -221,7 +221,7 @@ func Run() {
 
 	}
 
-	//add the global motherboard variable to teh build
+	//add the global motherboard variable to the build
 	Tower.Add(motherboard)
 	fmt.Println(Tower.ToString())
 	cloneTower := Tower.Clone()
