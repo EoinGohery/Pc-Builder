@@ -129,7 +129,7 @@ func (m *mobo) PrintIDString() string {
 	return fmt.Sprintf("\nID: %d Motherboard: %s %s Socket %s Max Ram: %d Ram Slots: %d  Drive Slots: %d TPD: %d Price: %d", m.id, m.manufacturer, m.name, m.socket, m.maxRam, m.ramSlots, m.driveSlots, m.tdp, m.price)
 }
 
-//clone function to allow for recurssive prototyping of components contained in teh object
+//clone function to allow for recurssive prototyping of components contained in the object
 func (m *mobo) clone() Component {
 	cloneBuild := &mobo{
 		id:         m.id,

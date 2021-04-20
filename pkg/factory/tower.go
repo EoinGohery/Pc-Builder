@@ -30,7 +30,7 @@ func (t *Tower) ToString() string {
 	return result
 }
 
-//clone function to allow for recurssive prototyping of components contained in teh object
+//clone function to allow for recurssive prototyping of components contained in the object
 func (t *Tower) Clone() Tower {
 	cloneBuild := &Tower{name: t.name + "_clone"}
 	var tempComponent []Component
